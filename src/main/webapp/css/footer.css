@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-banner {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffad83;
+    padding: 18px 0;
+    color: #000;
+}
+
+.banner-section {
+	margin-left: 6%;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.banner-section .icon {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.banner-section .info {
+    max-width: 300px;
+}
+
+.banner-section h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.banner-section p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.payment-icons img{
+    width: 100%;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.shipping-icons img{
+	width: 50%;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
