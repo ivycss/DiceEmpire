@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+html {
+	width: 500px;
+	margin: 10px auto;
+}
+
+h2 {
+	text-align: center;
+}
+
+a:link {
+	color: #3c1421;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+	color:#ffa07a;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+	color:#841439;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:active {
+	color:#ffa07a;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/*
+table {
+	width: 500px;
+}
+
+table, th, td {
+	text-align: center;
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+*/
+label {
+	font-weight: bold;
+}
+
+form input[type=text], form input[type=number], form input[type=password],
+	form input[type=date], form input[type=range], form input[type=email],
+	form input[type=url], form input[type=time], form input[list] {
+	width: 500px;
+	color:#d64e65;
+	font-size: 1em;
+}
+
+
+textarea {
+	width: 500px;
+	height: 60px;
+	color:#d64e65;
+	font-size: 1em;
+}
