@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="diceempire.model.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.util.Base64" %>
 <%
 Collection<?> products = (Collection<?>) request.getAttribute("products");
 if (products == null) {
@@ -52,7 +53,7 @@ while (it.hasNext()) {
     Prodotto prodotto = (Prodotto) it.next();
 %>
         <div class="item">
-            <img src="<%= request.getContextPath() %>/images/<%= prodotto.getNomeImmagine() %>" alt="<%= prodotto.getNome() %>" class="item-image">
+            <img src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(prodotto.getImmagine()) %>" class="item-image">
             <h3><%= prodotto.getNome() %></h3>
             <p><%= prodotto.getDescCorta() %></p>
             <p class="price">€<%= prodotto.getPrezzoIVA() %></p>

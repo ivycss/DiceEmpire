@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="diceempire.model.Prodotto" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,17 +58,18 @@
 </style>
 <body>
     <h2 align="center">INSERISCI PRODOTTO</h2>
-    <form align="center" action="catalogoadmin" method="post" enctype="multipart/form-data">
+    <form align="center" action="AdminCatalogServlet" method="post" enctype="multipart/form-data">
+
         <input type="hidden" name="action" value="insert">
 
         <label for="nome">Nome:</label><br>
-        <input name="nome" type="text" maxlength="20" required placeholder="inserisci il nome" autofocus required pattern="^[a-zA-Z0-9\s]+$"><br>
+        <input name="nome" type="text" maxlength="30" required placeholder="inserisci il nome" autofocus required pattern="^[a-zA-Z0-9\s]+$"><br>
 
         <label for="descrizione">Descrizione Breve:</label><br>
-        <textarea name="descrizione" maxlength="100" required placeholder="inserisci una breve descrizione"></textarea><br>
+        <textarea name="descrizione" maxlength="200" required placeholder="inserisci una breve descrizione"></textarea><br>
 
         <label for="descrizioneLunga">Descrizione Dettagliata:</label><br>
-        <textarea name="descrizioneLunga" maxlength="100" rows="3" required placeholder="inserisci una descrizione dettagliata"></textarea><br>
+        <textarea name="descrizioneLunga" maxlength="300" rows="3" required placeholder="inserisci una descrizione dettagliata"></textarea><br>
 
         <label for="produttore">Produttore:</label><br>
         <input name="produttore" type="text" maxlength="20" required placeholder="inserisci il produttore"><br>
@@ -84,6 +88,9 @@
 
         <label for="prezzo">Prezzo:</label><br>
         <input type="number" step="0.01" name="prezzo" id="prezzo"><br>
+        
+        <label for="iva">IVA:</label><br>
+        <input type="number" step="0.01" name="iva" id="iva"><br>
 
         <label for="quantita">Quantità:</label><br>
         <input name="quantita" type="number" min="1" value="1" required><br>

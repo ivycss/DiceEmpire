@@ -3,6 +3,7 @@
 <%@ page import="diceempire.control.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.util.Base64" %>
 <%
 Collection<?> products = (Collection<?>) request.getAttribute("products");
 if (products == null) {
@@ -42,7 +43,7 @@ if (products != null && products.size() != 0) {
             i++;
         %>
         <div class="item">
-            <img src="<%= request.getContextPath() %>/images/<%= prodotto.getNomeImmagine() %>" alt="Merce 1" class="item-image">
+            <img src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(prodotto.getImmagine()) %>" alt="Merce 1" class="item-image">
             <h3><%= prodotto.getNome() %></h3>
             <p><%= prodotto.getDescCorta() %></p>
             <p class="price">€<%= prodotto.getPrezzoIVA() %></p>	

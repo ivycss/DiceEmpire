@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="diceempire.model.*, java.util.*, java.text.DecimalFormat, diceempire.control.*"%>
+<%@ page import="java.util.Base64" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,7 @@
             <div class="cart-items">
                 <% for (ProdottoInCarrello c : prodotti) { %>
                     <div class="cart-item">
-                        <img class="product-image" src="<%= request.getContextPath() %>/images/<%= c.getItem().getNomeImmagine() %>" alt="<%= c.getItem().getNome() %>">
+                        <img class="product-image" src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(c.getItem().getImmagine()) %>" alt="<%= c.getItem().getNome() %>">
                         <div class="item-details">
                             <div class="item-name"><%= c.getItem().getNome() %></div>
                             <div class="item-description"><%= c.getItem().getDescCorta() %></div>

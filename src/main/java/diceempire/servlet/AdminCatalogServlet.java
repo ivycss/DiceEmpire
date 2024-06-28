@@ -3,14 +3,14 @@ package diceempire.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.io.*;
-import java.nio.file.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
-import javax.servlet.annotation.*;
+
 import diceempire.model.*;
 import diceempire.control.*;
 
+@WebServlet("/AdminCatalogServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10,      // 10MB
 maxRequestSize = 1024 * 1024 * 50)   // 50MB
@@ -30,6 +30,7 @@ public class AdminCatalogServlet extends HttpServlet {
 
     public AdminCatalogServlet() {
         super();
+        System.out.println("Costruttore AdminCatalogServlet chiamato.");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +48,7 @@ public class AdminCatalogServlet extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("id"));
                     model.doDelete(id);
                 } else if (action.equalsIgnoreCase("insert")) {
-                    
+                    // Niente da fare per l'azione "insert" nel doGet
                 }
             }
         } catch (SQLException e) {
@@ -67,79 +68,57 @@ public class AdminCatalogServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    	
+    	System.out.println("almeno ci ha provato 1");
+        Prodotto prodotto = new Prodotto();
+        prodotto.setNome(request.getParameter("nome"));
+        prodotto.setTipoProdotto(request.getParameter("tipoProdotto"));
+        prodotto.setTipoGioco(request.getParameter("tipoGioco"));
+        prodotto.setTipoCarte(request.getParameter("tipoCarte"));
+        prodotto.setProduttore(request.getParameter("produttore"));
+        prodotto.setDescLunga(request.getParameter("descrizioneLunga"));
+        prodotto.setDescCorta(request.getParameter("descrizione"));
+        prodotto.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
+        prodotto.setIVA(Double.parseDouble(request.getParameter("iva")));
+        prodotto.setEta(Integer.parseInt(request.getParameter("eta")));
+        prodotto.setEdizione(Integer.parseInt(request.getParameter("edizione")));
+        prodotto.setEdizioneLimitata(request.getParameter("edizioneLimitata"));
+        prodotto.setQuantita(Integer.parseInt(request.getParameter("quantita")));
 
-        if ("insert".equalsIgnoreCase(action)) {
-            
-            String uploadPath = getServletContext().getRealPath("") + File.separator + "images";
-
-            
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+        Part filePart = request.getPart("immagine");
+        if (filePart != null && filePart.getSize() > 0) {
+            try (InputStream inputStream = filePart.getInputStream()) {
+                byte[] imageBytes = new byte[(int) filePart.getSize()];
+                inputStream.read(imageBytes);
+                prodotto.setImmagine(imageBytes);
             }
+        }
 
-            Part filePart = request.getPart("immagine");
-            String fileName = getFileName(filePart);
-
-            if (fileName != null && !fileName.isEmpty()) {
-                
-                String filePath = uploadPath + File.separator + fileName;
-                filePart.write(filePath);
-
-                
-                String nome = request.getParameter("nome");
-                String tipoProdotto = request.getParameter("tipoProdotto");
-                String tipoGioco = request.getParameter("tipoGioco");
-                String tipoCarte = request.getParameter("tipoCarte");
-                String produttore = request.getParameter("produttore");
-                String descLunga = request.getParameter("descrizioneLunga");
-                String descCorta = request.getParameter("descrizione");
-                String prezzoStr = request.getParameter("prezzo");
-                double prezzo = (prezzoStr != null && !prezzoStr.isEmpty()) ? Double.parseDouble(prezzoStr) : 0.0;
-                int eta = Integer.parseInt(request.getParameter("eta"));
-                int edizione = Integer.parseInt(request.getParameter("edizione"));
-                String edizioneLimitata = request.getParameter("edizioneLimitata");
-                int quantita = Integer.parseInt(request.getParameter("quantita"));
-
-                Prodotto prodotto = new Prodotto();
-                prodotto.setNome(nome);
-                prodotto.setTipoProdotto(tipoProdotto);
-                prodotto.setTipoGioco(tipoGioco);
-                prodotto.setTipoCarte(tipoCarte);
-                prodotto.setProduttore(produttore);
-                prodotto.setDescLunga(descLunga);
-                prodotto.setDescCorta(descCorta);
-                prodotto.setPrezzo(prezzo);
-                prodotto.setEta(eta);
-                prodotto.setEdizione(edizione);
-                prodotto.setEdizioneLimitata(edizioneLimitata);
-                prodotto.setQuantita(quantita);
-                prodotto.setNomeImmagine(fileName);
-
-                try {
-                    model.doSave(prodotto);
-                } catch (SQLException e) {
-                    System.out.println("Error:" + e.getMessage());
+        try {
+            String action = request.getParameter("action");
+            if (action.equalsIgnoreCase("insert")) {
+                // Azione di default per l'inserimento di un nuovo prodotto
+                model.doSave(prodotto);
+                System.out.println("almeno ci ha provato 2");
+            } else if (action.equalsIgnoreCase("update")) {
+                // Azione di aggiornamento di un prodotto esistente
+            	Integer id = Integer.parseInt(request.getParameter("id"));
+                System.out.println("ID del prodotto: " + id);
+                if (id != null) {
+                	System.out.println("almeno ci ha provato 3");
+                	System.out.println("ID del prodotto2: " + id);
+                    model.doUpdate(prodotto,id);
                 }
             }
-
-            
-            response.sendRedirect(request.getContextPath() + "/catalogoadmin.jsp");
-        } else {
-            
-            doGet(request, response);
+        } catch (SQLException e) {
+            System.out.println("Error:" + e.getMessage());
+            response.sendRedirect("error.jsp");  // Redirect to an error page if needed
+            return;
         }
+
+        response.sendRedirect(request.getContextPath() + "/catalogoadmin.jsp");
     }
 
-    private String getFileName(Part part) {
-        final String partHeader = part.getHeader("content-disposition");
-        for (String content : partHeader.split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
-    }
 }

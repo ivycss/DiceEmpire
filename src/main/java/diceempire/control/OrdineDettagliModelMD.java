@@ -14,7 +14,7 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
     private static final String TABLE_NAME = "dettagliordine";
 
     public Boolean doSave(Ordine ordine) throws SQLException {
-        final String INSERT_SQL = "INSERT INTO " + OrdineDettagliModelMD.TABLE_NAME + "(idOrdine, nome, quantita, descrizione, foto, prezzoIva, totale, iva) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    	final String INSERT_SQL = "INSERT INTO " + OrdineDettagliModelMD.TABLE_NAME + "(idOrdine, nome, quantita, descrizione, immagine, prezzoIva, totale, iva) VALUES (?, ?, ?, ?, (SELECT immagine FROM Prodotti WHERE id = ?), ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Boolean good = true;
@@ -22,21 +22,21 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
         try {
             connection = DriverManagerConnection.getConnection();
             preparedStatement = connection.prepareStatement(INSERT_SQL);
-            if(ordine.getProdottiOrdine()==null) {
-            	System.out.println("Il problema Ã¨ qua ORDINEDETTAGLIMODELMD");
+            if (ordine.getProdottiOrdine() == null) {
+                System.out.println("Il problema è qua ORDINEDETTAGLIMODELMD");
             }
             ArrayList<ProdottoInCarrello> ProdottiTemp = (ArrayList<ProdottoInCarrello>) ordine.getProdottiOrdine();
 
             for (ProdottoInCarrello Tp : ProdottiTemp) {
-            	System.out.println("id prodotto" + Tp.getItem().getId());
-                if (Tp != null && Tp.getItem().getId() != null) { // Controlla che Tp e il suo ID non siano nulli
+                System.out.println("id prodotto" + Tp.getItem().getId());
+                if (Tp != null && Tp.getItem().getId() != null) { 
                     preparedStatement.setInt(1, ordine.getIdOrdine());
                     preparedStatement.setString(2, Tp.getItem().getNome());
-                    preparedStatement.setInt(3, ordine.quantita(Tp.getItem().getId())); // Assicurati che questo metodo restituisca la quantitï¿½ corretta
+                    preparedStatement.setInt(3, Tp.getNumItems()); 
                     preparedStatement.setString(4, Tp.getItem().getDescCorta());
-                    preparedStatement.setString(5, Tp.getItem().getNomeImmagine());
-                    preparedStatement.setDouble(6, Tp.getItem().getPrezzo());
-                    preparedStatement.setDouble(7, Tp.getItem().getPrezzo());
+                    preparedStatement.setInt(5,Tp.getItem().getId());
+                    preparedStatement.setDouble(6, Tp.getItem().getPrezzo() * Tp.getItem().getIVA()); 
+                    preparedStatement.setDouble(7, Tp.getNumItems() * Tp.getItem().getPrezzoIVA()); 
                     preparedStatement.setDouble(8, Tp.getItem().getIVA());
                     preparedStatement.executeUpdate();
                 } else {
@@ -51,12 +51,15 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
         }
         return good;
     }
+
     
     public Ordine doRetrieveByKey(int idOrdine) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Ordine ordine = new Ordine(null );
-        String selectSQL = "SELECT * FROM " + OrdineDettagliModelMD.TABLE_NAME + " WHERE id = ?";
+        ordine.setIdOrdine(idOrdine);
+        ordine.setProdottiOrdine(new ArrayList<>());
+        String selectSQL = "SELECT * FROM " + OrdineDettagliModelMD.TABLE_NAME + " WHERE idOrdine = ?";
 
         try {
             connection = DriverManagerConnection.getConnection();
@@ -67,13 +70,12 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
             while (rs.next()) {
                 // Popola l'arrayList di prodotti dell'ordine
                 ProdottoInCarrello prodotto = new ProdottoInCarrello();
-                prodotto.setId(rs.getInt("prodotto_id"));
+                prodotto.setNome(rs.getString("nome"));
                 prodotto.setNumItems(rs.getInt("quantita"));
-                prodotto.setPrezzo(rs.getDouble("prezzo"));
-                prodotto.setDescCorta(rs.getString("desccorta"));
+                prodotto.setDescCorta(rs.getString("descrizione"));
+                prodotto.setImmagine(rs.getBytes("immagine"));
                 prodotto.setIVA(rs.getDouble("iva"));
-                prodotto.setNomeImmagine(rs.getString("foto"));
-                prodotto.setNome(rs.getString("nomeProdotto"));
+                prodotto.setPrezzo(rs.getDouble("prezzoIva"));
                 ordine.getProdottiOrdine().add(prodotto);
             }
         } finally {

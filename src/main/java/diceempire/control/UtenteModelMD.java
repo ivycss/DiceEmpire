@@ -21,7 +21,7 @@ public class UtenteModelMD implements UtenteModel{
 	    PreparedStatement preparedStatement = null;
 
 	    String insertSQL = "INSERT INTO " + UtenteModelMD.TABLE_NAME
-	            + " (cf, password, nome, cognome, età , numeroTelefono, mail, citta, cap, via) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            + " (cf, password, nome, cognome, eta , numeroTelefono, mail, citta, cap, via) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	    try {
 	        connection = DriverManagerConnection.getConnection();
@@ -78,7 +78,7 @@ public class UtenteModelMD implements UtenteModel{
 				user.setPassword(rs.getString("password"));
 				user.setNome(rs.getString("nome"));
 				user.setCognome(rs.getString("cognome"));
-				user.setAge(rs.getInt("età"));
+				user.setAge(rs.getInt("eta"));
 				user.setTelefono(rs.getInt("numeroTelefono"));
 				user.setMail(rs.getString("mail"));
 				user.setCitta(rs.getString("citta"));
@@ -120,7 +120,7 @@ public class UtenteModelMD implements UtenteModel{
 				user.setPassword(rs.getString("password"));
 				user.setNome(rs.getString("nome"));
 				user.setCognome(rs.getString("cognome"));
-				user.setAge(rs.getInt("età"));
+				user.setAge(rs.getInt("eta"));
 				user.setTelefono(rs.getInt("numeroTelefono"));
 				user.setMail(rs.getString("mail"));
 				user.setCitta(rs.getString("citta"));
@@ -182,7 +182,7 @@ public class UtenteModelMD implements UtenteModel{
 	            user.setPassword(resultSet.getString("password"));
 	            user.setNome(resultSet.getString("nome"));
 	            user.setCognome(resultSet.getString("cognome"));
-	            user.setAge(resultSet.getInt("età"));
+	            user.setAge(resultSet.getInt("eta"));
 	            user.setTelefono(resultSet.getInt("numeroTelefono"));
 	            user.setMail(resultSet.getString("mail"));
 	            user.setCitta(resultSet.getString("citta"));
@@ -212,7 +212,7 @@ public class UtenteModelMD implements UtenteModel{
 
 	    try {
 	        connection = DriverManagerConnection.getConnection();
-	        String sql = "UPDATE " + TABLE_NAME + " SET cf = ?, password = ?, nome = ?, cognome = ?, età = ?, numeroTelefono = ?, mail = ?, citta = ?, cap = ?, via = ? WHERE mail = ?";
+	        String sql = "UPDATE " + TABLE_NAME + " SET cf = ?, password = ?, nome = ?, cognome = ?, eta = ?, numeroTelefono = ?, mail = ?, citta = ?, cap = ?, via = ? WHERE mail = ?";
 
 	        preparedStatement = connection.prepareStatement(sql);
 	        preparedStatement.setString(1, user.getCf());

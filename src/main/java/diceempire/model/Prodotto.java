@@ -1,5 +1,6 @@
 package diceempire.model;
 import java.io.Serializable;
+import java.util.Base64;
 
 public class Prodotto implements Serializable {
 
@@ -17,8 +18,20 @@ public class Prodotto implements Serializable {
 	private String descCorta;
 	private Integer eta;
 	private Integer quantita;
-	private String nomeImmagine;
 	private Double IVA;
+	private byte[] immagine;
+
+
+
+	public byte[] getImmagine() {
+		return immagine;
+	}
+
+
+
+	public void setImmagine(byte[] immagine) {
+		this.immagine = immagine;
+	}
 
 
 
@@ -165,17 +178,6 @@ public class Prodotto implements Serializable {
 		this.quantita = quantita;
 	}
 
-	public String getNomeImmagine() {
-		return nomeImmagine;
-	}
-
-
-
-	public void setNomeImmagine(String nomeImmagine) {
-		this.nomeImmagine = nomeImmagine;
-	}
-
-
 
 	public String getDescLunga() {
 		return descLunga;
@@ -205,6 +207,12 @@ public class Prodotto implements Serializable {
 		
 	}
 
+    public String getImmagineBase64() {
+        if (immagine != null) {
+            return Base64.getEncoder().encodeToString(immagine);
+        }
+        return null;
+    }
 
 
 }

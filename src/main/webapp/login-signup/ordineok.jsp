@@ -97,7 +97,7 @@
             <% if (prodotti != null && !prodotti.isEmpty()) { %>
                 <% for (ProdottoInCarrello c : prodotti) { %>
                     <div class="item">
-                        <img src="<%= request.getContextPath() %>/images/<%= c.getItem().getNomeImmagine() %>" alt="<%= c.getItem().getNome() %>">
+                        <img src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(c.getItem().getImmagine()) %>" alt="<%= c.getItem().getNome() %>">
                         <div class="item-details">
                             <div class="item-name"><%= c.getItem().getNome() %></div>
                             <div class="item-quantity">Quantità: <%= c.getNumItems() %></div>

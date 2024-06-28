@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="diceempire.model.*, java.util.*, java.text.DecimalFormat" %>
+<%@ page import="java.util.Base64" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@
                         <% for (ProdottoInCarrello c : prodotti) { i++; %>
                         <div class="row border-top border-bottom">
                             <div class="row main align-items-center">
-                                <div class="col-2"><img class="img-fluid" src="<%= request.getContextPath() %>/images/<%= c.getItem().getNomeImmagine() %>"></div>
+                                <div class="col-2"><img class="img-fluid" src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(c.getItem().getImmagine()) %>"></div>
                                 <div class="col">
                                     <div class="row text-muted"><%= c.getItem().getNome() %></div>
                                     <div class="row"><%= c.getItem().getDescCorta() %></div>

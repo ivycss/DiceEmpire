@@ -11,6 +11,8 @@ public interface ProdottoModel {
 
 	public Prodotto doRetrieveByKey(int code) throws SQLException;
 	
+	public void doUpdate(Prodotto product, Integer id) throws SQLException;
+	
 	public Collection<Prodotto> doRetrieveAll(String order) throws SQLException;
 	
 	public Collection<Prodotto> doRetrieveByCategory(String category) throws SQLException;

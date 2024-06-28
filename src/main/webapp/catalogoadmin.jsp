@@ -15,6 +15,7 @@
     <%@page import = "diceempire.model.*" %>
     <%@page import = "diceempire.control.*" %>
     <%@page import = "java.util.*" %>
+    <%@ page import="java.util.Base64" %>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -84,11 +85,18 @@
                     Prodotto prodotto = (Prodotto) it.next();
         %>
         <tr>
-            <td><img src="<%= request.getContextPath() %>/images/<%= prodotto.getNomeImmagine() %>" width="100"></td>
+             <td>
+                    <% if (prodotto.getImmagine() != null && prodotto.getImmagine().length > 0) { %>
+                        <img src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(prodotto.getImmagine()) %>" width="100">
+                    <% } else { %>
+                        Immagine non disponibile
+                    <% } %>
+                </td>
             <td><%=prodotto.getId()%></td>
             <td><%=prodotto.getNome()%></td>
             <td><%=prodotto.getDescCorta()%></td>
             <td><a href="admindettagli.jsp?id=<%=prodotto.getId()%>">Dettagli</a><br>
+            <a href="adminmodificaprodotto.jsp?id=<%= prodotto.getId() %>">Modifica</a>
                 <a href="catalogoadmin?action=delete&id=<%=prodotto.getId()%>"
                    onclick="return confirm('Sei sicuro di voler eliminare questo prodotto?');">Elimina</a>
             </td>

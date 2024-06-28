@@ -2,6 +2,7 @@ package diceempire.servlet;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 import diceempire.model.*;
 import diceempire.control.*;
 
@@ -70,7 +73,16 @@ public class CatalogServlet extends HttpServlet{
 						int edizione = Integer.parseInt(request.getParameter("edizione"));
 						String edizioneLimitata = request.getParameter("edizioneLimitata");
 						int quantita = Integer.parseInt(request.getParameter("quantita"));
-						String nomeImmagine = (request.getParameter("nome") != null) ? request.getParameter("nome").toLowerCase() + ".jpg" : "";
+						
+						Part filePart = request.getPart("immagine");
+		                byte[] immagine = null;
+		                if (filePart != null && filePart.getSize() > 0) {
+		                    try (InputStream inputStream = filePart.getInputStream()) {
+		                        immagine = inputStream.readAllBytes();
+		                    } catch (IOException e) {
+		                        System.out.println("Errore nel leggere l'immagine: " + e.getMessage());
+		                    }
+		                }
 
 
 
@@ -88,7 +100,7 @@ public class CatalogServlet extends HttpServlet{
 						prodotto.setEdizione(edizione);
 						prodotto.setEdizioneLimitata(edizioneLimitata);
 						prodotto.setQuantita(quantita);
-						prodotto.setNomeImmagine(nomeImmagine);
+						prodotto.setImmagine(immagine);
 
 						model.doSave(prodotto);
 

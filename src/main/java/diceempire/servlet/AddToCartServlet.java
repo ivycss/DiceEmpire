@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 
 @WebServlet(name = "AddToCartServlet", urlPatterns = "/add-to-cart")
@@ -35,8 +36,10 @@ public class AddToCartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
             session.setAttribute("aggiuntoCarrello", "true");
 
-            // Reindirizza l'utente alla pagina visitata
             String pageVisited = request.getHeader("referer");
+            if (pageVisited != null && pageVisited.endsWith("dettagli.jsp")) {
+            	pageVisited += "?id=" + id;
+            }
             response.sendRedirect(pageVisited);
         } catch (NumberFormatException | SQLException e) {
             e.printStackTrace();

@@ -50,7 +50,7 @@ public class ProdottoInCarrello extends Prodotto{
 	}
 	
 
-	// getImmagine
+
 	public void EliminaElemento() {
 		setNumItems(0);
 		

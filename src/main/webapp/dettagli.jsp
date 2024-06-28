@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import = "diceempire.model.*" %>
 <%@page import = "diceempire.control.*" %>
+    <%@ page import="java.util.*" %>
 
 <%
     int productId = Integer.parseInt(request.getParameter("id"));
     ProdottoModelMD model = new ProdottoModelMD();
     Prodotto prodotto = model.doRetrieveByKey(productId);
-    if (prodotto != null) { 
+    if (prodotto != null) {
 %>
 <%@include file="/navbar.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +20,10 @@
     <title>Dettagli Prodotto</title>
 </head>
 <body>
-    
+ <%@ include file="/login-signup/alertcarrello.jsp" %>
 <div class="product-details">
     <div class="product-image">
-      <img src="<%= request.getContextPath() %>/images/<%= prodotto.getNomeImmagine() %>" alt="<%= prodotto.getNome() %>" class="product-image">
+      <img src="data:image/jpeg;base64, <%= Base64.getEncoder().encodeToString(prodotto.getImmagine()) %>" alt="<%= prodotto.getNome() %>" class="product-image">
     </div>
     <div class="product-divider"></div>
     <h2 class="product-title"><%= prodotto.getNome() %></h2>    

@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 import diceempire.connection.DriverManagerConnection;
 import diceempire.model.Ordine;
 import diceempire.model.Prodotto;
@@ -144,4 +147,37 @@ public class OrdineModelMD implements OrdineModel {
 		System.out.println(ordine.getDataOrdine());
 		return ordine;
 	}
+    
+    public List<Ordine> doRetrieveAllByUser(Integer idUtente) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<Ordine> ordini = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM " + OrdineModelMD.TABLE_NAME + " WHERE idUtente = ?";
+
+        try {
+            connection = DriverManagerConnection.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idUtente);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ordine ordine = new Ordine(null);
+                ordine.setIdOrdine(rs.getInt("idOrdine"));
+                ordine.setIdUtente(rs.getInt("idUtente"));
+                ordine.setDataOrdine(rs.getDate("dataOrdine"));
+                ordini.add(ordine);
+            }
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnection.releaseConnection(connection);
+            }
+        }
+        return ordini;
+    }
+
 }

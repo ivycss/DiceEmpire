@@ -23,7 +23,7 @@
                     <div class="button-container">
                         <button class="user-button" onclick="window.location.href='userinfo.jsp'">Modifica Dati Personali</button>
                         <button class="user-button" onclick="window.location.href='usercarta.jsp'">Modifica Metodo Pagamento</button>
-                        <button class="user-button" onclick="window.location.href='userordini.jsp'">Visualizza Ordini</button>
+                        <button class="user-button" onclick="window.location.href='userorder.jsp'">Visualizza Ordini</button>
                     </div>
                 <% } %>
             </div>

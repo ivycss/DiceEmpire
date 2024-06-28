@@ -68,7 +68,7 @@ public class CheckoutServlet extends HttpServlet {
                 clonedProdotto.setPrezzo(prodotto.getItem().getPrezzo());
                 clonedProdotto.setDescCorta(prodotto.getItem().getDescCorta());
                 clonedProdotto.setIVA(prodotto.getItem().getIVA());
-                clonedProdotto.setNomeImmagine(prodotto.getNomeImmagine());
+                clonedProdotto.setImmagine(prodotto.getImmagine());
                 clonedProdotto.setNome(prodotto.getItem().getNome());
                 System.out.println("Id clone di prodotto " + clonedProdotto.getNome());
                 ProdottoInCarrello prodOrd = new ProdottoInCarrello();

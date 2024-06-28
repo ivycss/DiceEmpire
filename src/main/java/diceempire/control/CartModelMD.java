@@ -37,7 +37,7 @@ public class CartModelMD implements CartModel {
                 prodotto.setDescLunga(rs.getString("descrizioneDettagliata"));
                 prodotto.setPrezzo(rs.getDouble("prezzo"));
                 prodotto.setQuantita(rs.getInt("quantita"));
-                prodotto.setNomeImmagine(rs.getString("nomeImmagine"));
+                prodotto.setImmagine(rs.getBytes("immagine"));
                 prodotto.setEdizione(rs.getInt("edizione"));
                 prodotto.setEdizioneLimitata(rs.getString("edizioneLimitata"));
                 prodotto.setTipoProdotto(rs.getString("tipoProdotto"));
@@ -45,6 +45,7 @@ public class CartModelMD implements CartModel {
                 prodotto.setTipoCarte(rs.getString("tipoCarte"));
                 prodotto.setProduttore(rs.getString("produttore"));
                 prodotto.setEta(rs.getInt("eta"));
+                prodotto.setIVA(rs.getDouble("iva"));
             }
 
         } finally {
@@ -102,7 +103,7 @@ public class CartModelMD implements CartModel {
                         prodotto.setDescLunga(rs.getString("descrizioneDettagliata"));
                         prodotto.setPrezzo(rs.getDouble("prezzo"));
                         prodotto.setQuantita(rs.getInt("quantita"));
-                        prodotto.setNomeImmagine(rs.getString("nomeImmagine"));
+                        prodotto.setImmagine(rs.getBytes("immagine"));
                         prodotto.setEdizione(rs.getInt("edizione"));
                         prodotto.setEdizioneLimitata(rs.getString("edizioneLimitata"));
                         prodotto.setTipoProdotto(rs.getString("tipoProdotto"));
@@ -110,6 +111,7 @@ public class CartModelMD implements CartModel {
                         prodotto.setTipoCarte(rs.getString("tipoCarte"));
                         prodotto.setProduttore(rs.getString("produttore"));
                         prodotto.setEta(rs.getInt("eta"));
+                        prodotto.setIVA(rs.getDouble("iva"));
                         products.add(prodotto);
                     }
                 }
