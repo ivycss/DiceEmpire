@@ -96,6 +96,11 @@
         <servlet-class>diceempire.servlet.SearchServlet</servlet-class>
     </servlet>
     
+               <servlet>
+        <servlet-name>CheckEmailServlet</servlet-name>
+        <servlet-class>diceempire.servlet.CheckEmailServlet</servlet-class>
+    </servlet>
+    
     
     
    
@@ -153,6 +158,12 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
+    
+                <servlet-mapping>
+        <servlet-name>CheckEmailServlet</servlet-name>
+        <url-pattern>/check-email</url-pattern>
+    </servlet-mapping>
+    
 
   
   <session-config>
