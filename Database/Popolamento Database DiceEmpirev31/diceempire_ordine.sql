@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `diceempire` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `diceempire`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: diceempire
@@ -18,31 +16,28 @@ USE `diceempire`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pagamento`
+-- Table structure for table `ordine`
 --
 
-DROP TABLE IF EXISTS `pagamento`;
+DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pagamento` (
-  `numeroCarta` bigint NOT NULL,
-  `dataScadenza` int NOT NULL,
-  `cvc` int NOT NULL,
-  `nomeInt` varchar(25) NOT NULL,
-  `cognomeInt` varchar(25) NOT NULL,
+CREATE TABLE `ordine` (
+  `idOrdine` int NOT NULL AUTO_INCREMENT,
   `idUtente` int NOT NULL,
-  PRIMARY KEY (`numeroCarta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `dataOrdine` date DEFAULT NULL,
+  PRIMARY KEY (`idOrdine`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pagamento`
+-- Dumping data for table `ordine`
 --
 
-LOCK TABLES `pagamento` WRITE;
-/*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
-INSERT INTO `pagamento` VALUES (346125631245312,2027,333,'Simon','Carbone',1);
-/*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
+LOCK TABLES `ordine` WRITE;
+/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
+INSERT INTO `ordine` VALUES (42,1,'2024-06-28'),(43,1,'2024-06-29'),(44,1,'2024-06-29'),(45,1,'2024-06-30'),(46,7,'2024-06-30'),(47,7,'2024-06-30'),(48,5,'2024-06-30');
+/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-29 22:17:45
+-- Dump completed on 2024-06-30 20:41:47

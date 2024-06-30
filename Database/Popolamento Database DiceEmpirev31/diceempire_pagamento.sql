@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `diceempire` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `diceempire`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: diceempire
@@ -18,28 +16,31 @@ USE `diceempire`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ordine`
+-- Table structure for table `pagamento`
 --
 
-DROP TABLE IF EXISTS `ordine`;
+DROP TABLE IF EXISTS `pagamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ordine` (
-  `idOrdine` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pagamento` (
+  `numeroCarta` bigint NOT NULL,
+  `dataScadenza` int NOT NULL,
+  `cvc` int NOT NULL,
+  `nomeInt` varchar(25) NOT NULL,
+  `cognomeInt` varchar(25) NOT NULL,
   `idUtente` int NOT NULL,
-  `dataOrdine` date DEFAULT NULL,
-  PRIMARY KEY (`idOrdine`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`numeroCarta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ordine`
+-- Dumping data for table `pagamento`
 --
 
-LOCK TABLES `ordine` WRITE;
-/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES (42,1,'2024-06-28');
-/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
+LOCK TABLES `pagamento` WRITE;
+/*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
+INSERT INTO `pagamento` VALUES (6512365431276,2027,742,'Simon','Carbone',1),(6713561254312,2026,476,'Abdif','Babbif',7);
+/*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-29 22:17:45
+-- Dump completed on 2024-06-30 20:41:47
