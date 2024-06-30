@@ -133,7 +133,7 @@
         <br>
         <form action="adminordini.jsp" method="get">
             <label for="userId">ID Utente:</label>
-            <input type="text" id="userId" name="userId" value="<%= userIdStr %>">
+            <input type="text" id="userId" name="userId" >
             <button type="submit">Filtra per Utente</button>
         </form>
     </div>
