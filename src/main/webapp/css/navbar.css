@@ -90,12 +90,12 @@
     position: absolute;
     top: 38px; /* Posizione sotto la barra di ricerca */
     left: 0;
-    width: 250px; /* Larghezza dei risultati */
+    width: 250px; 
     background-color: rgba(255, 255, 255, 0.9); /* Sfondo semi trasparente */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra */
-    border-radius: 5px; /* Bordi arrotondati */
-    max-height: 200px; /* Altezza massima dei risultati */
-    overflow-y: auto; /* Scorri se i risultati sono più lunghi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    border-radius: 5px; 
+    max-height: 200px; 
+    overflow-y: auto; /* scorri se i risultati sono più lunghi */
 }
 
 .search-result {
