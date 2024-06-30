@@ -71,7 +71,7 @@ public class CatalogoProdottiServlet extends HttpServlet {
                     int edizione = Integer.parseInt(request.getParameter("edizione"));
                     String edizioneLimitata = request.getParameter("edizioneLimitata");
                     int quantita = Integer.parseInt(request.getParameter("quantita"));
-                   
+                  //conversione immagine, legge tutto il flusso di byte che identificano l'immagine del prodotto
                     Part filePart = request.getPart("immagine");
                     byte[] immagine = null;
                     if (filePart != null && filePart.getSize() > 0) {
@@ -107,7 +107,7 @@ public class CatalogoProdottiServlet extends HttpServlet {
                 request.setAttribute("products", model.doRetrieveByCategory(filter));
             } else {
                 request.removeAttribute("products");
-                request.setAttribute("products", model.doRetrieveAll(sort));
+                request.setAttribute("products", model.doRetrieveAll(sort));//il metodo dp retrieve all può avere come attributo un order oppure niente
             }
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());

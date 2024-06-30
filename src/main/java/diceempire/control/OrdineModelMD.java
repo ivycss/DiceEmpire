@@ -24,21 +24,21 @@ public class OrdineModelMD implements OrdineModel {
         PreparedStatement preparedStatement = null;
         Boolean good = true;
         
-        // Assuming dataOrdine is the current timestamp
+        
         Timestamp dataOrdine = new Timestamp(System.currentTimeMillis());
 
         try {
-            System.out.println("Connecting to database...");
+            System.out.println("Connecting to database...");//debug
             connection = DriverManagerConnection.getConnection();
-            connection.setAutoCommit(false); // Begin transaction
+            connection.setAutoCommit(false); 
 
-            System.out.println("Preparing statement...");
+            System.out.println("Preparing statement...");//debug
             preparedStatement = connection.prepareStatement(INSERT_SQL);
             preparedStatement.setInt(1, idUtente);
             preparedStatement.setTimestamp(2, dataOrdine);
             
 
-            System.out.println("Executing update...");
+            System.out.println("Executing update...");//debug
             int affectedRows = preparedStatement.executeUpdate();
 
             System.out.println("Affected rows: " + affectedRows);
@@ -47,7 +47,7 @@ public class OrdineModelMD implements OrdineModel {
                 throw new SQLException("Creating order failed, no rows affected.");
             }
 
-            connection.commit(); // Commit transaction
+            connection.commit(); //rende permanenti le modifiche nel database, alcune volte serve per forzarlo come in questo caso
 
             System.out.println("Order saved successfully.");
 
@@ -55,7 +55,7 @@ public class OrdineModelMD implements OrdineModel {
             if (connection != null) {
                 try {
                     System.err.println("Transaction is being rolled back.");
-                    connection.rollback();
+                    connection.rollback();//annulla tutte le operazioni precedenti
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -67,7 +67,7 @@ public class OrdineModelMD implements OrdineModel {
                 preparedStatement.close();
             }
             if (connection != null) {
-                connection.setAutoCommit(true); // Reset auto-commit to default
+                connection.setAutoCommit(true); //Ogni operazione di sql è confermata subito dopo la sua esecuzione
                 DriverManagerConnection.releaseConnection(connection);
             }
         }
@@ -104,6 +104,7 @@ public class OrdineModelMD implements OrdineModel {
 				DriverManagerConnection.releaseConnection(connection);
 			}
 		}
+		//debug
 		System.out.println("retrieve di ordinemodel:");
 		System.out.println(ordine.getIdOrdine());
 		System.out.println(ordine.getIdUtente());
@@ -142,6 +143,7 @@ public class OrdineModelMD implements OrdineModel {
 				DriverManagerConnection.releaseConnection(connection);
 			}
 		}
+		//debug
 		System.out.println("retrieve di ordinemodel:");
 		System.out.println(ordine.getIdOrdine());
 		System.out.println(ordine.getIdUtente());
@@ -213,6 +215,7 @@ public class OrdineModelMD implements OrdineModel {
     }
     
     public List<Ordine> doRetrieveAllByDateRange(Date startDate, Date endDate) throws SQLException {
+    	//utilizzo dei due intervalli per prendere solo ordini in quel range di date. 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         List<Ordine> ordini = new ArrayList<>();
@@ -241,6 +244,7 @@ public class OrdineModelMD implements OrdineModel {
     }
     
     public List<Ordine> doRetrieveAllSortedByIdUtente() throws SQLException {
+    	//utilizza il valore che prende dopo per ordinare in base all'utente
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         List<Ordine> ordini = new ArrayList<>();

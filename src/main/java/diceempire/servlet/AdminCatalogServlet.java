@@ -11,6 +11,7 @@ import diceempire.model.*;
 import diceempire.control.*;
 
 @WebServlet("/AdminCatalogServlet")
+//per gestione e limite dei dati caricati, per gestire l'aggiunta delle immagini
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
 maxFileSize = 1024 * 1024 * 10,      // 10MB
 maxRequestSize = 1024 * 1024 * 50)   // 50MB
@@ -46,9 +47,9 @@ public class AdminCatalogServlet extends HttpServlet {
                     request.setAttribute("product", model.doRetrieveByKey(id));
                 } else if (action.equalsIgnoreCase("delete")) {
                     int id = Integer.parseInt(request.getParameter("id"));
-                    model.doDelete(id);
+                    model.doDelete(id);//dal model di prodotto
                 } else if (action.equalsIgnoreCase("insert")) {
-                    // Niente da fare per l'azione "insert" nel doGet
+                    // nullas da fare per l'azione "insert" nel doGet
                 }
             }
         } catch (SQLException e) {
@@ -89,6 +90,7 @@ public class AdminCatalogServlet extends HttpServlet {
 
         Part filePart = request.getPart("immagine");
         if (filePart != null && filePart.getSize() > 0) {
+        	//prende solo una parte della request, la foto, e dice quanti byte dovrà leggere
             try (InputStream inputStream = filePart.getInputStream()) {
                 byte[] imageBytes = new byte[(int) filePart.getSize()];
                 inputStream.read(imageBytes);
@@ -99,11 +101,11 @@ public class AdminCatalogServlet extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action.equalsIgnoreCase("insert")) {
-                // Azione di default per l'inserimento di un nuovo prodotto
+            	 // azione di default per l'inserimento di un nuovo prodotto
                 model.doSave(prodotto);
                 System.out.println("almeno ci ha provato 2");
             } else if (action.equalsIgnoreCase("update")) {
-                // Azione di aggiornamento di un prodotto esistente
+            	 // azione di aggiornamento di un prodotto esistente
             	Integer id = Integer.parseInt(request.getParameter("id"));
                 System.out.println("ID del prodotto: " + id);
                 if (id != null) {
@@ -114,7 +116,7 @@ public class AdminCatalogServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
-            response.sendRedirect("error.jsp");  // Redirect to an error page if needed
+            response.sendRedirect("error.jsp");  
             return;
         }
 

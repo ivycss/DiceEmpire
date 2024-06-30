@@ -43,7 +43,7 @@ public class UpdateCardServlet extends HttpServlet {
 
             Carta cartaPresente = pagamentoModel.doRetrieveByUser(user.getId());
             if (cartaPresente == null) {
-                // La carta non esiste, quindi salva una nuova carta
+                // qui capisce che la carta non è valida, quindi ne crea una
                 boolean saveSuccess = pagamentoModel.doSave(carta);
                 if (saveSuccess) {
                     session.setAttribute("updateSuccess", "Carta aggiunta con successo.");
@@ -52,7 +52,7 @@ public class UpdateCardServlet extends HttpServlet {
                     session.setAttribute("updateError", "Errore durante l'aggiunta della carta.");
                 }
             } else {
-                // La carta esiste, quindi aggiornala
+                // la carta esiste gia , quindi aggiorna
                 Carta updatedCarta = pagamentoModel.doUpdate(carta);
                 if (updatedCarta != null) {
                     session.setAttribute("updateSuccess", "Carta aggiornata con successo.");

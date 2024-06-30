@@ -98,7 +98,7 @@ public class CheckoutServlet extends HttpServlet {
                 OrdineDettagliModelMD ordineDettagliModel = new OrdineDettagliModelMD();
                 boolean dettagliSalvati = ordineDettagliModel.doSave(ordine);
 
-                if (dettagliSalvati) {
+                if (dettagliSalvati) {//svuota la sessione dopo che ha salvato l'ordine
                     session.removeAttribute("cart");
                     response.sendRedirect("login-signup/ordineok.jsp");
                 } else {

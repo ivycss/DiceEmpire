@@ -55,7 +55,7 @@ public class ProdottoInCarrello extends Prodotto{
 		setNumItems(0);
 		
 	}
-	//Costo totale di tutti gli elementi di quel tipo
+	//costo totale di tutti gli elementi di quel tipo
 	public Double CostoTotale() {
 		return (getCosto()*getNumItems());
 		

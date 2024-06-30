@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 
             if (utente != null) {
                 // Autenticazione riuscita, salva le informazioni dell'utente nella sessione
+            	//la divisione è fatta per semplificare i vari impieghi che ne devono essere fatti 
                 HttpSession session = request.getSession();
                 session.setAttribute("auth", utente);
                 session.setAttribute("userRole", utente.getRole());
@@ -76,7 +77,7 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            // Gestione delle eccezioni generiche
+        
             response.sendRedirect("login-signup/loginerror.jsp");
         }
     }
@@ -131,7 +132,7 @@ public class LoginServlet extends HttpServlet {
     private String hashPassword(String password) {
         MessageDigest md = null;
         try {
-            md = MessageDigest.getInstance("SHA-256");
+            md = MessageDigest.getInstance("SHA-256"); //tipologia di hash scelta
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

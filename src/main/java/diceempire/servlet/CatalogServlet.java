@@ -66,14 +66,14 @@ public class CatalogServlet extends HttpServlet{
 						if (!prezzoStr.isEmpty()) {
 						    prezzo = Double.parseDouble(prezzoStr);
 						} else {
-						    // Se la stringa Ã¨ vuota, assegna un valore di default o gestisci il caso come preferisci
-						    prezzo = 0.0; // o un altro valore di default
+						    
+						    prezzo = 0.0; 
 						}
 						int eta = Integer.parseInt(request.getParameter("eta"));
 						int edizione = Integer.parseInt(request.getParameter("edizione"));
 						String edizioneLimitata = request.getParameter("edizioneLimitata");
 						int quantita = Integer.parseInt(request.getParameter("quantita"));
-						
+						//prende parte del file che è l'immagine e ne elabora il flusso di byte
 						Part filePart = request.getPart("immagine");
 		                byte[] immagine = null;
 		                if (filePart != null && filePart.getSize() > 0) {

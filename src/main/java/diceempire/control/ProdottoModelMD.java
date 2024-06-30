@@ -133,7 +133,7 @@ public class ProdottoModelMD implements ProdottoModel {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<Prodotto> products = new LinkedList<Prodotto>();
+		Collection<Prodotto> products = new LinkedList<Prodotto>(); //collection è versatile e permette l'utilizzo di qualunque tipo in forma di collezioen
 
 		String selectSQL = "SELECT * FROM " + ProdottoModelMD.TABLE_NAME;
 
@@ -178,7 +178,7 @@ public class ProdottoModelMD implements ProdottoModel {
 		}
 		return products;
 	}
-	
+	//si attiva tramite un bottone che rimanda automaticamente o la ccattegoria carta o la categoria gioco
 	public synchronized Collection<Prodotto> doRetrieveByCategory(String category) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -258,9 +258,9 @@ public class ProdottoModelMD implements ProdottoModel {
 	        preparedStatement.setDouble(13, product.getIVA());
 
 	        //
-	        int parameterIndex = 14;
+	        int parameterIndex = 14;//valore del nuovo parametro del preparedStatement
 	        if (product.getImmagine() != null && product.getImmagine().length > 0) {
-	            preparedStatement.setBytes(parameterIndex++, product.getImmagine());
+	            preparedStatement.setBytes(parameterIndex++, product.getImmagine());//infatti è richiamato qua
 	        }
 
 	        preparedStatement.setInt(parameterIndex, id);

@@ -36,10 +36,11 @@ public class AddToCartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
             session.setAttribute("aggiuntoCarrello", "true");
 
-            String pageVisited = request.getHeader("referer");
+            String pageVisited = request.getHeader("referer");//recupera l'header dell'utlima pagina visitata
             if (pageVisited != null && pageVisited.endsWith("dettagli.jsp")) {
             	pageVisited += "?id=" + id;
             }
+            //l'aggiunta è stata fatta da una apgina dettagli. Si prende l'id del prodotto appena aggiunto e si torna alla sua pagina di dettagli
             response.sendRedirect(pageVisited);
         } catch (NumberFormatException | SQLException e) {
             e.printStackTrace();

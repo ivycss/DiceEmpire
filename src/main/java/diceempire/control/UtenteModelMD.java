@@ -89,7 +89,6 @@ public class UtenteModelMD implements UtenteModel{
 			}
 		}
 		catch(Exception e) {
-			// handle exception
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}

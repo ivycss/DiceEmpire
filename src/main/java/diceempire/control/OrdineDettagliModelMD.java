@@ -68,7 +68,7 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                // Popola l'arrayList di prodotti dell'ordine
+                // popola l'arrayList di prodotti dell'ordine
                 ProdottoInCarrello prodotto = new ProdottoInCarrello();
                 prodotto.setNome(rs.getString("nome"));
                 prodotto.setNumItems(rs.getInt("quantita"));
