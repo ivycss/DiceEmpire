@@ -294,6 +294,51 @@ public class ProdottoModelMD implements ProdottoModel {
 	        }
 	    }
 	}
+	
+	public synchronized Collection<Prodotto> doRetrieveByQuery(String query) throws SQLException {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+
+	    Collection<Prodotto> products = new LinkedList<Prodotto>();
+	    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE nome LIKE ? OR descrizione LIKE ?";
+
+	    try {
+	        connection = DriverManagerConnection.getConnection();
+	        preparedStatement = connection.prepareStatement(selectSQL);
+	        preparedStatement.setString(1, "%" + query + "%");
+	        preparedStatement.setString(2, "%" + query + "%");
+
+	        ResultSet rs = preparedStatement.executeQuery();
+
+	        while (rs.next()) {
+	            Prodotto prodotto = new Prodotto();
+	            prodotto.setId(rs.getInt("id"));
+	            prodotto.setNome(rs.getString("nome"));
+	            prodotto.setDescCorta(rs.getString("descrizione"));
+	            prodotto.setDescLunga(rs.getString("descrizioneDettagliata"));
+	            prodotto.setPrezzo(rs.getDouble("prezzo"));
+	            prodotto.setQuantita(rs.getInt("quantita"));
+	            prodotto.setEdizione(rs.getInt("edizione"));
+	            prodotto.setEdizioneLimitata(rs.getString("edizioneLimitata"));
+	            prodotto.setTipoProdotto(rs.getString("tipoProdotto"));
+	            prodotto.setTipoGioco(rs.getString("tipoGioco"));
+	            prodotto.setTipoCarte(rs.getString("tipoCarte"));
+	            prodotto.setProduttore(rs.getString("produttore"));
+	            prodotto.setEta(rs.getInt("eta"));
+	            prodotto.setIVA(rs.getDouble("iva"));
+	            prodotto.setImmagine(rs.getBytes("immagine"));
+	            products.add(prodotto);
+	        }
+	    } finally {
+	        try {
+	            if (preparedStatement != null)
+	                preparedStatement.close();
+	        } finally {
+	            DriverManagerConnection.releaseConnection(connection);
+	        }
+	    }
+	    return products;
+	}
 
 }
 

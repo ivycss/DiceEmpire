@@ -71,18 +71,39 @@
 	border-radius: 20px;
 }
 
-        .search-container input[type="text"] {
-            padding: 10px 20px 10px 40px;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 15px;
-            width: 200px;
-            box-sizing: border-box;
-        }
-        .search-container .fa-search {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 160, 122, 0.8);
-        }
+#search-box {
+    position: relative;
+    margin-left: 12%; /* Posiziona a destra all'interno della navbar */
+    margin-right: -25%;
+}
+
+#search-input {
+    width: 250px; /* Larghezza della barra di ricerca */
+    padding: 8px;
+    border-radius: 20px; /* Bordi arrotondati */
+    border: 1px solid #ccc; /* Colore e spessore del bordo */
+    font-size: 14px;
+    outline: none; /* Rimuove il bordo quando in focus */
+}
+
+#search-results {
+    position: absolute;
+    top: 38px; /* Posizione sotto la barra di ricerca */
+    left: 0;
+    width: 250px; /* Larghezza dei risultati */
+    background-color: rgba(255, 255, 255, 0.9); /* Sfondo semi trasparente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra */
+    border-radius: 5px; /* Bordi arrotondati */
+    max-height: 200px; /* Altezza massima dei risultati */
+    overflow-y: auto; /* Scorri se i risultati sono più lunghi */
+}
+
+.search-result {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transizione del colore di sfondo */
+}
+
+.search-result:hover {
+    background-color: #f0f0f0; /* Colore di sfondo al passaggio del mouse */
+}

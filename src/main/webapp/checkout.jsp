@@ -19,6 +19,12 @@
         Utente user = (Utente) session.getAttribute("auth");
         PagamentoModelMD pagamentoModel = new PagamentoModelMD();
         Carta carta = pagamentoModel.doRetrieveByUser(user.getId());
+        double totale = 0.0;
+        if (prodotti != null && !prodotti.isEmpty()) {
+            for (ProdottoInCarrello c : prodotti) {
+                totale += c.getItem().getPrezzoIVA() * c.getNumItems();
+            }
+        }
     %>
 
     <div class="card">
@@ -40,7 +46,10 @@
                     </div>
                 <% } %>
             </div>
-
+                        <div class="total-price">
+                <h3>Totale Costo Prodotti: &euro; <%= df.format(totale) %></h3>
+                <h4> PROMO PRESENTE: SPEDIZIONE GRATIS SU TUTTI I PRODOTTI!</h4>
+            </div>
             <div class="payment-info">
                 <form action="checkout" method="post">
                     <% if (carta != null) { %>

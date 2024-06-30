@@ -91,6 +91,11 @@
         <servlet-class>diceempire.servlet.EliminaCartaServlet</servlet-class>
     </servlet>
     
+           <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>diceempire.servlet.SearchServlet</servlet-class>
+    </servlet>
+    
     
     
    
@@ -142,6 +147,11 @@
         <servlet-mapping>
         <servlet-name>EliminaCartaServlet</servlet-name>
         <url-pattern>/elimina-carta</url-pattern>
+    </servlet-mapping>
+    
+            <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
 
   

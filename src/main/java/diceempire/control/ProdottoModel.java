@@ -16,4 +16,6 @@ public interface ProdottoModel {
 	public Collection<Prodotto> doRetrieveAll(String order) throws SQLException;
 	
 	public Collection<Prodotto> doRetrieveByCategory(String category) throws SQLException;
+	
+	public  Collection<Prodotto> doRetrieveByQuery(String query) throws SQLException;
 }
