@@ -71,7 +71,7 @@
     </style>
 </head>
 <body>
-    <div align="center">
+    <div>
         <a href="adminaddprodotto.jsp" class="outlined-button">Inserisci Nuovo Prodotto</a>
         <a href="adminordini.jsp" class="outlined-button">Visualizza Ordini</a>
         <br> <br>

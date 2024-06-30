@@ -55,6 +55,7 @@
         }
 
         .outlined-button {
+        	
             border: 2.5px solid #000;
             padding: 12px 28px;
             background-color: #FA706E;
@@ -71,7 +72,7 @@
     </style>
 </head>
 <body>
-    <div align="center">
+    <div align="center" style="margin-top: 5%;">
         <a href="catalogoadmin.jsp" class="outlined-button">Torna al Catalogo</a>
         <a href="home.jsp" class="outlined-button">Torna alla Home</a>
     </div>
