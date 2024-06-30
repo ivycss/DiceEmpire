@@ -89,6 +89,9 @@ if (prodotto != null) {
             <th>Età Minima</th>
             <th>Edizione</th>
             <th>Edizione Limitata</th>
+            <th>IVA</th>
+            <th>Prezzo con IVA</th>
+            
         </tr>
         <tr>
             <td><%=prodotto.getPrezzo()%></td>
@@ -96,6 +99,8 @@ if (prodotto != null) {
             <td><%=prodotto.getEta()%></td>
             <td><%=prodotto.getEdizione()%></td>
             <td><%=prodotto.getEdizioneLimitata()%></td>
+            <td><%=prodotto.getIVA()%></td>
+            <td><%=prodotto.getPrezzoIVA()%></td>
         </tr>
     </table>
         <br>
