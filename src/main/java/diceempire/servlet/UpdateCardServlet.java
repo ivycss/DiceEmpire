@@ -41,13 +41,25 @@ public class UpdateCardServlet extends HttpServlet {
             carta.setCognomeInt(cognomeInt);
             carta.setIdUtente(user.getId());
 
-            Carta updatedCarta = pagamentoModel.doUpdate(carta);
-
-            if (updatedCarta != null) {
-                session.setAttribute("updateSuccess", "Carta aggiornata con successo.");
-                session.setAttribute("carta", updatedCarta);
+            Carta cartaPresente = pagamentoModel.doRetrieveByUser(user.getId());
+            if (cartaPresente == null) {
+                // La carta non esiste, quindi salva una nuova carta
+                boolean saveSuccess = pagamentoModel.doSave(carta);
+                if (saveSuccess) {
+                    session.setAttribute("updateSuccess", "Carta aggiunta con successo.");
+                    session.setAttribute("carta", carta);
+                } else {
+                    session.setAttribute("updateError", "Errore durante l'aggiunta della carta.");
+                }
             } else {
-                session.setAttribute("updateError", "Errore durante l'aggiornamento della carta.");
+                // La carta esiste, quindi aggiornala
+                Carta updatedCarta = pagamentoModel.doUpdate(carta);
+                if (updatedCarta != null) {
+                    session.setAttribute("updateSuccess", "Carta aggiornata con successo.");
+                    session.setAttribute("carta", updatedCarta);
+                } else {
+                    session.setAttribute("updateError", "Errore durante l'aggiornamento della carta.");
+                }
             }
 
             response.sendRedirect("usercarta.jsp");

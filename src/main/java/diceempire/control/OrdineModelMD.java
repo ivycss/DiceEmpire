@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import diceempire.connection.DriverManagerConnection;
@@ -180,4 +181,88 @@ public class OrdineModelMD implements OrdineModel {
         return ordini;
     }
 
+    public List<Ordine> doRetrieveAll() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<Ordine> ordini = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM " + OrdineModelMD.TABLE_NAME;
+
+        try {
+            connection = DriverManagerConnection.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ordine ordine = new Ordine(null);
+                ordine.setIdOrdine(rs.getInt("idOrdine"));
+                ordine.setIdUtente(rs.getInt("idUtente"));
+                ordine.setDataOrdine(rs.getDate("dataOrdine"));
+                ordini.add(ordine);
+            }
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnection.releaseConnection(connection);
+            }
+        }
+        return ordini;
+    }
+    
+    public List<Ordine> doRetrieveAllByDateRange(Date startDate, Date endDate) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<Ordine> ordini = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE dataOrdine BETWEEN ? AND ?";
+
+        try {
+            connection = DriverManagerConnection.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setTimestamp(1, new Timestamp(startDate.getTime()));
+            preparedStatement.setTimestamp(2, new Timestamp(endDate.getTime()));
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ordine ordine = new Ordine(null);
+                ordine.setIdOrdine(rs.getInt("idOrdine"));
+                ordine.setIdUtente(rs.getInt("idUtente"));
+                ordine.setDataOrdine(rs.getDate("dataOrdine"));
+                ordini.add(ordine);
+            }
+        } finally {
+            if (preparedStatement != null) preparedStatement.close();
+            DriverManagerConnection.releaseConnection(connection);
+        }
+        return ordini;
+    }
+    
+    public List<Ordine> doRetrieveAllSortedByIdUtente() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<Ordine> ordini = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " ORDER BY idUtente";
+
+        try {
+            connection = DriverManagerConnection.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ordine ordine = new Ordine(null);
+                ordine.setIdOrdine(rs.getInt("idOrdine"));
+                ordine.setIdUtente(rs.getInt("idUtente"));
+                ordine.setDataOrdine(rs.getDate("dataOrdine"));
+                ordini.add(ordine);
+            }
+        } finally {
+            if (preparedStatement != null) preparedStatement.close();
+            DriverManagerConnection.releaseConnection(connection);
+        }
+        return ordini;
+    }
 }

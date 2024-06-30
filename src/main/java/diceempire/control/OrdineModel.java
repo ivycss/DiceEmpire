@@ -1,6 +1,7 @@
 package diceempire.control;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import diceempire.model.Ordine;
@@ -15,4 +16,10 @@ public interface OrdineModel {
 	public Ordine doRetrieveByUser(Integer idUtente) throws SQLException; 
 	
 	public List<Ordine> doRetrieveAllByUser(Integer idUtente) throws SQLException;
+	
+	public List<Ordine> doRetrieveAll() throws SQLException;
+	
+	public List<Ordine> doRetrieveAllByDateRange(Date startDate, Date endDate) throws SQLException;
+	
+	public List<Ordine> doRetrieveAllSortedByIdUtente() throws SQLException;
 }

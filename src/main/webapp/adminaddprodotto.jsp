@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%String userRole = (String) session.getAttribute("userRole");
+if ("admin".equals(userRole)){ %>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="css/admincatalogo.css" rel="stylesheet" type="text/css">
     <title>Aggiungi Prodotto</title>
@@ -125,5 +127,10 @@
     <div align="center">
         <a href="catalogoadmin.jsp" class="outlined-button">Torna al Catalogo</a>
     </div>
+    <%
+            } else {
+            	response.sendRedirect("error.jsp");
+            }
+        %>
 </body>
 </html>

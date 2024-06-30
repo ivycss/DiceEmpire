@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	String userRole = (String) session.getAttribute("userRole");
+	if ("admin".equals(userRole)){
     Collection<?> products = (Collection<?>) request.getAttribute("products");
     if (products == null) {
         response.sendRedirect("./catalogoadmin");    
@@ -69,6 +71,12 @@
     </style>
 </head>
 <body>
+    <div align="center">
+        <a href="adminaddprodotto.jsp" class="outlined-button">Inserisci Nuovo Prodotto</a>
+        <a href="adminordini.jsp" class="outlined-button">Visualizza Ordini</a>
+        <br> <br>
+        <a href="home.jsp" class="outlined-button">Torna alla Home</a>
+    </div>
     <h2 align="center">PRODOTTI</h2>
     <table align="center">
         <tr>
@@ -113,9 +121,10 @@
         %>
     </table>
     <br>
-    <div align="center">
-        <a href="adminaddprodotto.jsp" class="outlined-button">Inserisci Nuovo Prodotto</a>
-        <a href="home.jsp" class="outlined-button">Torna alla Home</a>
-    </div>
+    <%
+            } else {
+            	response.sendRedirect("error.jsp");
+            }
+        %>
 </body>
 </html>

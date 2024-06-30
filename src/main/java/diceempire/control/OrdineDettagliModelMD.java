@@ -23,7 +23,7 @@ public class OrdineDettagliModelMD implements OrdineDettagliModel {
             connection = DriverManagerConnection.getConnection();
             preparedStatement = connection.prepareStatement(INSERT_SQL);
             if (ordine.getProdottiOrdine() == null) {
-                System.out.println("Il problema è qua ORDINEDETTAGLIMODELMD");
+                System.out.println("Il problema Ã¨ qua ORDINEDETTAGLIMODELMD");
             }
             ArrayList<ProdottoInCarrello> ProdottiTemp = (ArrayList<ProdottoInCarrello>) ordine.getProdottiOrdine();
 

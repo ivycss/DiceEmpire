@@ -26,14 +26,13 @@
                             carta = pagamentoModel.doRetrieveByUser(user.getId());
                             session.setAttribute("carta", carta);
                         }
-                    
             %>
                 <div class="user-info-form">
                     <h2 class="titolo">Informazioni Carta</h2>
                     <form action="update-carta" method="post">
                         <div class="form-group">
                             <label for="numeroCarta"><strong>Numero Carta (MAX 16 CIFRE):</strong></label>
-                            <input type="text" id="numeroCarta" name="numeroCarta" value="<%= carta != null ? carta.getNumeroCarta() : "" %>"pattern="[0-9]{1,16}" required>
+                            <input type="text" id="numeroCarta" name="numeroCarta" value="<%= carta != null ? carta.getNumeroCarta() : "" %>" pattern="[0-9]{1,16}" required>
                         </div>
                         <div class="form-group">
                             <label for="dataScadenza"><strong>Data Scadenza (ANNO):</strong></label>
@@ -54,6 +53,11 @@
                         <div class="button">
                             <button type="submit" class="update">Aggiorna Carta</button>
                             <button class="back"><a href="user.jsp">Torna Indietro</a></button>
+                        </div>
+                    </form>
+                    <form action="elimina-carta" method="post">
+                        <div class="button">
+                            <button type="submit" class="delete">Elimina Carta</button>
                         </div>
                     </form>
                     <%

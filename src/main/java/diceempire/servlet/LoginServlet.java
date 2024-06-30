@@ -68,6 +68,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("auth", utente);
                 session.setAttribute("userRole", utente.getRole());
                 session.setAttribute("email", utente.getMail());
+                session.setAttribute("idUtente", utente.getId());
                 response.sendRedirect("login-signup/loginok.jsp?nome=" + utente.getNome());
             } else {
                 // Credenziali non valide

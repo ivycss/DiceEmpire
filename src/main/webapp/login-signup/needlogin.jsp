@@ -42,8 +42,9 @@
 </head>
 <body>
     <h1>Login Necessario</h1>
-    <p>Per procedere al checkout è necessario effettuare il login. Si prega di effettuare il login o tornare alla home.</p>
+    <p>Per procedere al checkout è necessario effettuare il login. Si prega di effettuare il Login o di Registrarsi.</p>
     <a href="../login.jsp" class="button">Vai al Login</a>
+    <a href="../signup.jsp" class="button">Registrati</a>
     <a href="../home.jsp" class="button">Torna alla Home</a>
 </body>
 </html>

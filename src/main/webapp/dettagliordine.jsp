@@ -22,21 +22,26 @@
 <body>
     <%@ include file="/navbar.jsp" %>
     <div class="container">
-    <%    int idOrdine = Integer.parseInt(request.getParameter("id"));  %>
+    <%    int idOrdine = Integer.parseInt(request.getParameter("id"));  
+   		 Utente user = (Utente) session.getAttribute("auth");%>
 
         <h1>Dettagli Ordine: <%= idOrdine %></h1>
         <%
 
             OrdineDettagliModelMD ordineDettagliModel = new OrdineDettagliModelMD();
+        	OrdineModelMD ordineModel = new OrdineModelMD();
             Ordine ordine = null;
+            Ordine ordine1 = null;
             try {
                 ordine = ordineDettagliModel.doRetrieveByKey(idOrdine);
+                ordine1 = ordineModel.doRetrieveByKey(idOrdine);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             
             
             if (ordine != null) {
+            	if(user!=null && user.getId()==ordine1.getIdUtente()){
             	Double totaleOrdine=0.0;
                 List<ProdottoInCarrello> prodottiOrdine = ordine.getProdottiOrdine();
         %>
@@ -69,15 +74,23 @@
                     
                     <!-- Totale Ordine centrato e in grassetto -->
                     <p class="total-order">Totale Ordine: &euro; <%= totaleOrdine %></p>
-                    
+                                   
                 </div>
         <% 
-            } else {
+            } else { response.sendRedirect("error.jsp");}
+            	
+            }
+            	else {
+            
         %>
                 <p>Ordine non trovato.</p>
         <% } %>
 
     <div align="center">
+                        <form action="fattura" method="post">
+                        <input type="hidden" name="idOrdine" value="<%= idOrdine %>">
+                        <button type="submit" class="custom-button">Scarica Fattura</button>
+                    </form>
         <a href="user.jsp" class="custom-button">Torna all'Area Utente</a>
         <a href="userorder.jsp" class="custom-button">Torna agli Ordini</a>
     </div>

@@ -2,7 +2,7 @@
 
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   
-  <display-name>8 maggio TSW</display-name>
+  <display-name>Dice Empire</display-name>
   <welcome-file-list>
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
@@ -80,6 +80,19 @@
     <servlet-name>UpdateCardServlet</servlet-name>
     <servlet-class>diceempire.servlet.UpdateCardServlet</servlet-class>
 </servlet>
+
+    <servlet>
+        <servlet-name>FatturaServlet</servlet-name>
+        <servlet-class>diceempire.servlet.FatturaServlet</servlet-class>
+    </servlet>
+    
+       <servlet>
+        <servlet-name>EliminaCartaServlet</servlet-name>
+        <servlet-class>diceempire.servlet.EliminaCartaServlet</servlet-class>
+    </servlet>
+    
+    
+    
    
   <servlet-mapping>
     <servlet-name>CatalogServlet</servlet-name>
@@ -120,6 +133,16 @@
     <servlet-name>UpdateCardServlet</servlet-name>
     <url-pattern>/update-carta</url-pattern>
 </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FatturaServlet</servlet-name>
+        <url-pattern>/fattura</url-pattern>
+    </servlet-mapping>
+    
+        <servlet-mapping>
+        <servlet-name>EliminaCartaServlet</servlet-name>
+        <url-pattern>/elimina-carta</url-pattern>
+    </servlet-mapping>
 
   
   <session-config>

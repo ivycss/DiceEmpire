@@ -93,6 +93,19 @@ button {
     margin-right: 12%;
     margin-left: 0%;
 }
+
+        .delete {
+        
+            padding: 10px 20px;
+            color: #252537;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 5px;
+            margin-right: 12%;
+    		margin-left: 25%;
+        }
+
 /* Submits */
 user-info-form .update {
     width: 40%;

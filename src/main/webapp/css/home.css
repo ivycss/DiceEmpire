@@ -3,6 +3,7 @@ body {
 background-image: url('../images/sfondohome5.png'); /* Specifica il percorso dell'immagine di sfondo */
     background-size: fixed; /* Regola per adattare l'immagine allo schermo */
     background-repeat: repeat;
+    overflow-x :hidden;
 }
 
 .container {
@@ -31,10 +32,10 @@ background-image: url('../images/sfondohome5.png'); /* Specifica il percorso del
 }
 
 .offers .offer-image {
-    max-width: 128%;
-    height: auto;
-    margin-top: -2.7%;
-    margin-left: -14%;
+    max-width: 129.1%;
+    max-height: 118%;
+    margin-top: -3.4%;
+    margin-left: -14.5%;
 }
 
 .titoloprodotti {
@@ -44,7 +45,8 @@ background-image: url('../images/sfondohome5.png'); /* Specifica il percorso del
     margin: 16% 0; /* Margini superiori e inferiori */
     font-size: 2.5em; /* Imposta una dimensione del font più grande */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra al testo per decorazione */
-    margin-bottom: -11%;
+    margin-bottom: -10%;
+    margin-top: 10%;
 }
 
 .goods {
@@ -113,10 +115,10 @@ background-image: url('../images/sfondohome5.png'); /* Specifica il percorso del
 	        margin-bottom: 0%;
 }
 .news-banner {
-    max-width: 100%;
+    max-width: 85%;
     height: auto;
     margin-top: 10px;
-    margin-left: 5.5%;
+    margin-left: 7.0%;
 
 }
 

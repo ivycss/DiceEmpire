@@ -12,4 +12,6 @@ public interface PagamentoModel {
 	
 	public Carta doUpdate(Carta carta) throws SQLException;
 	
+	public boolean doDelete(int idUtente) throws SQLException;
+	
 }

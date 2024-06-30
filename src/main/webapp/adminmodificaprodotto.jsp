@@ -5,7 +5,8 @@
 <%@ page import="diceempire.servlet.*" %>
 <%@page import = "java.util.*" %>
 <%@ page import="java.util.Base64" %>
-<%
+<%String userRole = (String) session.getAttribute("userRole");
+if ("admin".equals(userRole)){
 int productId = Integer.parseInt(request.getParameter("id"));
 ProdottoModelMD model = new ProdottoModelMD();
 Prodotto prodotto = model.doRetrieveByKey(productId);
@@ -233,6 +234,9 @@ if (prodotto != null) {
     </div>
 </body>
 <%
+	}
+} else{
+	response.sendRedirect("error.jsp");
 }
 %>
 </html>

@@ -58,6 +58,9 @@
                 %>
             </tbody>
         </table>
+        <div align="center">
+        <a href="user.jsp" class="back-button">Torna all'Area Utente</a>
+    </div>
     </div>
 </body>
 </html>
