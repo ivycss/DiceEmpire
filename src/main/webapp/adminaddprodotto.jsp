@@ -65,13 +65,13 @@ if ("admin".equals(userRole)){ %>
         <input type="hidden" name="action" value="insert">
 
         <label for="nome">Nome:</label><br>
-        <input name="nome" type="text" maxlength="30" required placeholder="inserisci il nome" autofocus required pattern="^[a-zA-Z0-9\s]+$"><br>
+        <input name="nome" type="text" maxlength="50" required placeholder="inserisci il nome" autofocus required pattern="^[a-zA-Z0-9\s]+$"><br>
 
         <label for="descrizione">Descrizione Breve:</label><br>
         <textarea name="descrizione" maxlength="200" required placeholder="inserisci una breve descrizione"></textarea><br>
 
         <label for="descrizioneLunga">Descrizione Dettagliata:</label><br>
-        <textarea name="descrizioneLunga" maxlength="300" rows="3" required placeholder="inserisci una descrizione dettagliata"></textarea><br>
+        <textarea name="descrizioneLunga" maxlength="500" rows="3" required placeholder="inserisci una descrizione dettagliata"></textarea><br>
 
         <label for="produttore">Produttore:</label><br>
         <input name="produttore" type="text" maxlength="20" required placeholder="inserisci il produttore"><br>

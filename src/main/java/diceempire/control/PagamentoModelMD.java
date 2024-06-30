@@ -19,7 +19,7 @@ public class PagamentoModelMD implements PagamentoModel{
 
         try {
             connection = DriverManagerConnection.getConnection();
-            connection.setAutoCommit(false); // Disabilita l'auto-commit per gestire manualmente la transazione
+            connection.setAutoCommit(false); // disabilita l'autocommit 
             preparedStatement = connection.prepareStatement(INSERT_SQL);
             preparedStatement.setLong(1, carta.getNumeroCarta());
             preparedStatement.setInt(2, carta.getDataScadenza());
@@ -31,17 +31,17 @@ public class PagamentoModelMD implements PagamentoModel{
             int rowsInserted = preparedStatement.executeUpdate();
 
             if (rowsInserted > 0) {
-                connection.commit(); // Commette la transazione
+                connection.commit(); // fai commit
                 success = true;
                 System.out.println("Informazioni di pagamento salvate correttamente.");
             } else {
-                connection.rollback(); // Annulla la transazione in caso di errore
+                connection.rollback(); // annulla in caso di errore
                 System.out.println("Salvataggio delle informazioni di pagamento fallito.");
             }
         } catch (SQLException e) {
             if (connection != null) {
                 try {
-                    connection.rollback(); // Annulla la transazione in caso di eccezione
+                    connection.rollback(); // Annulla in caso di eccezione
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -52,7 +52,7 @@ public class PagamentoModelMD implements PagamentoModel{
                 preparedStatement.close();
             }
             if (connection != null) {
-                connection.setAutoCommit(true); // Ripristina l'auto-commit
+                connection.setAutoCommit(true); // ripristina l'autocommit
                 DriverManagerConnection.releaseConnection(connection);
             }
         }
