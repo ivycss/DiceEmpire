@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/dettagliordine.css">
     <title>Dettagli Ordine</title>
     <style>
-        /* Stili aggiuntivi inline per centrare e rendere in grassetto il testo "Totale Ordine" */
+       
         .total-order {
             text-align: center;
             font-weight: bold;
@@ -72,7 +72,7 @@
                         </ul>
                     </div>
                     
-                    <!-- Totale Ordine centrato e in grassetto -->
+                  
                     <p class="total-order">Totale Ordine: &euro; <%= totaleOrdine %></p>
                                    
                 </div>

@@ -29,14 +29,14 @@ if (products != null && products.size() != 0) {
     Iterator<?> it = products.iterator();
 %>
 <div class="container">
-    <!-- Offers Section -->
+  
     <div class="offers">
         <a href="dettagli.jsp?id=12">
         <img src="images/bannerdragon.png" alt="Offerta Speciale" class="offer-image"></a>
-        <!-- Contenuto delle offerte -->
+       
     </div>
 <h2 class="titoloprodotti">In Evidenza</h2>
-    <!-- Goods Section -->
+
     <div class="goods">
         <% while (it.hasNext() && i<4) { 
             Prodotto prodotto = (Prodotto) it.next();
@@ -58,7 +58,7 @@ if (products != null && products.size() != 0) {
         </div>
         <% } %>
     </div>
-    <!-- Explore Catalog Button -->
+ 
 <div class="explore-catalog-button">
     <a href="catalogo.jsp">
     <button class="explore-button">Esplora il Catalogo</button>

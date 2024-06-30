@@ -11,32 +11,32 @@
 <div class="overlay">
    <button class="back"><a href="home.jsp">Torna alla Home</a></button>
 <form action="user-signup" method="post">
-   <!--   con = Container  for items in the form-->
+ 
    <div class="con">
-   <!--     Start  header Content  -->
+
    <header class="head-form">
       <h2><img src="images/logode.png" alt="Icona di accesso" class="logo"></h2>
-      <!--     A welcome message or an explanation of the login form -->
+
    </header>
-   <!--     End  header Content  -->
+
    <br>
         <p class="titolo">Inserisci i campi richiesti</p>
    <div class="field-set">
      
-      <!--   user name -->
 
-        <!--   user name Input-->
+
+       
          <input class="form-input" id="txt-input" type="text" placeholder="Email" name="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
      
       <br>
      
-           <!--   Password -->
+        
      
 
       <!--   Password Input-->
       <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
      
-<!--      Show/hide password  -->
+
      
      
       <br>
@@ -72,23 +72,19 @@
          <input class="form-input" type="text" placeholder="CAP" name="cap" required>
       </div>
    </div>
-<!--        buttons -->
-<!--      button LogIn -->
+
 
    </div>
   
-<!--   other buttons -->
-   
 
-<!--   End Conrainer  -->
   </div>
   <div class="other">
 <!--     Sign Up button -->
       <button class="sign-up" type="submit">Registrati</button>
       
-<!--      End Other the Division -->
+
    </div>
-  <!-- End Form -->
+
 </form>
 </div>
 

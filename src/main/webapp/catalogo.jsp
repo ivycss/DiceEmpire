@@ -26,7 +26,7 @@ if (products != null && products.size() != 0) {
 %>
 <div class="container">
     <h2 class="titoloprodotti">Tutti i Prodotti</h2>
-    <!-- Bottoni di filtro -->
+
     <div class="filter-buttons">
         <form action="catalogo" method="get">
             <button type="submit" name="filter" value="Gioco" class="outlined-button">Giochi </button>
@@ -34,7 +34,7 @@ if (products != null && products.size() != 0) {
         </form>
     </div>
     
-    <!-- Sort Section -->
+
     <div class="sort-section" style="float: left; margin-bottom: 20px;">
         <form action="catalogo" method="get">
             <label for="sort">Ordina per:</label>
@@ -46,7 +46,7 @@ if (products != null && products.size() != 0) {
         </form>
     </div>
     
-    <!-- Goods Section -->
+
     <div class="goods">
 <%
 while (it.hasNext()) { 

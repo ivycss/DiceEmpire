@@ -9,7 +9,7 @@
     <link href="${pageContext.request.contextPath}/css/user.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <%@ include file="/navbar.jsp" %> <!-- Includi il tuo file di navigazione se necessario -->
+    <%@ include file="/navbar.jsp" %> 
     <div id="main" class="clear">
         <div class="center">
             <div class="welcome-container">

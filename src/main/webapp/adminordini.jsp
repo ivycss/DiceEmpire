@@ -89,7 +89,7 @@
             font-size: 18px;
             cursor: pointer;
             border-radius: 23px;
-            margin: 5px; /* Aggiunto margine tra i pulsanti */
+            margin: 5px; 
         }
 
         .outlined-button:hover {

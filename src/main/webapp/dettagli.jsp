@@ -55,7 +55,7 @@
                 <td><strong>€</strong> <%= prodotto.getPrezzoIVA() %> IVA Inclusa </td>
             </tr>
             
-            <!-- Aggiungi altre caratteristiche del prodotto qui -->
+         
         </table>
     </div>
     <form action="add-to-cart" method="get">  
