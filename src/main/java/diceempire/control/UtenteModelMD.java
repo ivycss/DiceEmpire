@@ -21,7 +21,7 @@ public class UtenteModelMD implements UtenteModel{
 	    PreparedStatement preparedStatement = null;
 
 	    String insertSQL = "INSERT INTO " + UtenteModelMD.TABLE_NAME
-	            + " (cf, password, nome, cognome, eta , numeroTelefono, mail, citta, cap, via) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            + " (cf, password, nome, cognome, eta, numeroTelefono, mail, citta, cap, via) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	    try {
 	        connection = DriverManagerConnection.getConnection();
