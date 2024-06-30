@@ -75,6 +75,7 @@
         <a href="adminaddprodotto.jsp" class="outlined-button">Inserisci Nuovo Prodotto</a>
         <a href="adminordini.jsp" class="outlined-button">Visualizza Ordini</a>
         <br> <br>
+        <a href="adminutenti.jsp" class="outlined-button">Visualizza Utenti</a>
         <a href="home.jsp" class="outlined-button">Torna alla Home</a>
     </div>
     <h2 align="center">PRODOTTI</h2>
