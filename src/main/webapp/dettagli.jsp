@@ -4,6 +4,7 @@
     <%@ page import="java.util.*" %>
 
 <%
+//sta la jsp dettagli direttamente nell'action, e da lì prende il parametro con valore id.
     int productId = Integer.parseInt(request.getParameter("id"));
     ProdottoModelMD model = new ProdottoModelMD();
     Prodotto prodotto = model.doRetrieveByKey(productId);

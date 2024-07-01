@@ -18,7 +18,7 @@
     Date endDate = null;
     
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    
+    //in base a quelli non null viene fatto il sort, relativamente alle cose scritte sopra
     try {
         if (startDateStr != null && !startDateStr.isEmpty()) {
             startDate = sdf.parse(startDateStr);
